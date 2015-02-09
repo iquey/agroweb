@@ -1,0 +1,389 @@
+
+
+		* {
+            margin: 0;
+            padding: 0;
+        }
+        html,body {
+            height:100%;
+            text-align: center
+          
+        }
+        /* Div que engloba el contenido de la página menos el footer */
+        #wrapper {
+            min-height:100%;
+               /* background-image: url("../imagenes/fondo.jpg");  */
+                background-color:#fff; 
+               padding-left: 220px;
+               
+        }
+        header {
+       	 position: relative;
+        	height: 130px; 
+            background-image: url("../imagenes/footer.png");
+            padding:10px 50px;
+            text-align: center
+        }
+        section {
+            overflow: auto;
+            /* Definimos el padding inferior:
+               50px del pie de pagina mas 10px de separacion
+            */
+            
+            padding-bottom: 0px;
+            /* Definimos un padding superior */
+             padding-top:170px;
+        }
+        footer {
+            position: relative;
+            /* Altura total del footer en px con valor negativo */
+            margin-top: -35px;
+            /* Altura del footer en px. Se han restado los 5px del margen
+               superior mas los 5px del margen inferior
+            */
+            height: 35px; 
+            padding:5px 0px;
+            clear: both;
+            background-image: url("../imagenes/footer.png");
+            text-align: center;
+            color: #fff;
+        }
+        h4.rigths{
+			font-size: 12px;
+			text-align: right;
+   			color: #fff;
+		}
+        
+        /* Esta clase define la anchura del contenido y la posicion centrada 
+           El contenido queda centrado y limitado, pero la cabecera y el pie
+           llegan hasta los limites del navegador.
+        */
+        .define {
+            width:1100px;
+            margin:0 auto;
+        }
+        
+        table {
+        border: 0;
+     
+       text-align:center;
+       background-image: url("../imagenes/footer.png");
+       cellpadding: 10px; 
+       cellspacing: 10px; 
+       width: 85%;
+       }
+       
+       tr.color {
+       background-color:#0B4C5F;
+       bordercolor: #0B4C5F;
+       }
+       th.colorth {
+       background-color:#0B4C5F;
+        bordercolor: #0B4C5F;
+       }
+       
+       
+
+.buttons input {
+    margin: 5px;
+    padding: 5px 5px 5px 20px; /* 20px makes room for your background image */
+    border: 1px solid #aaa;
+}
+
+.buttons .apply {
+    background: #4162a8;
+  border-top: 1px solid #38538c;
+  border-right: 1px solid #1f2d4d;
+  border-bottom: 1px solid #151e33;
+  border-left: 1px solid #1f2d4d;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 10px 1px #5c8bee, 0 1px 0 #1d2c4d, 0 6px 0 #1f3053, 0 8px 4px 1px #111111;
+  box-shadow: inset 0 1px 10px 1px #5c8bee, 0 1px 0 #1d2c4d, 0 6px 0 #1f3053, 0 8px 4px 1px #111111;
+  color: #fff;
+  font: bold 12px/1 "helvetica neue", helvetica, arial, sans-serif;
+  margin-bottom: 10px;
+  padding: 5px 0 5px 0;
+  text-align: center;
+  text-shadow: 0 -1px 1px #1e2d4d;
+  width: 100px;
+  -webkit-background-clip: padding-box; }
+  button.punch:hover {
+    -webkit-box-shadow: inset 0 0 20px 1px #87adff, 0 1px 0 #1d2c4d, 0 6px 0 #1f3053, 0 8px 4px 1px #111111;
+    box-shadow: inset 0 0 20px 1px #87adff, 0 1px 0 #1d2c4d, 0 6px 0 #1f3053, 0 8px 4px 1px #111111;
+    cursor: pointer; }
+  button.punch:active {
+    -webkit-box-shadow: inset 0 1px 10px 1px #5c8bee, 0 1px 0 #1d2c4d, 0 2px 0 #1f3053, 0 4px 3px 0 #111111;
+    box-shadow: inset 0 1px 10px 1px #5c8bee, 0 1px 0 #1d2c4d, 0 2px 0 #1f3053, 0 4px 3px 0 #111111;
+    margin-top: 58px; 
+} 
+
+.buttons .cross {
+    background: #eee url("../imagenes/pie.png") no-repeat 0 50%;
+} 
+
+body {
+    font-size: 100%;
+     background-image: url("../imagenes/footer.png");
+}
+a {
+    text-decoration: none;
+}
+ul, 
+ul ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+#w {  
+   width: 195px;
+    margin: 0px 0;
+    font-size: 0.8125em;
+	 /* critical sizing and position styles */
+  height: 100%;
+  position: fixed;
+  top: 155;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  
+  /* non-critical appearance styles */
+  list-style: none;
+  background-image: url("../imagenes/footer.png");
+}
+.menu {
+    width: auto;
+    height: auto;
+    -webkit-box-shadow: 0px 1px 3px 0px rgba(0,0,0,.73), 0px 0px 18px 0px rgba(0,0,0,.13);
+    -moz-box-shadow: 0px 1px 3px 0px rgba(0,0,0,.73), 0px 0px 18px 0px rgba(0,0,0,.13);
+    box-shadow: 0px 1px 3px 0px rgba(0,0,0,.73), 0px 0px 18px 0px rgba(0,0,0,.13);
+}
+.menu > li > a {
+    background-color: #616975;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(114, 122, 134)),to(rgb(80, 88, 100)));
+    background-image: -webkit-linear-gradient(top, rgb(114, 122, 134), rgb(80, 88, 100));
+    background-image: -moz-linear-gradient(top, rgb(114, 122, 134), rgb(80, 88, 100));
+    background-image: -o-linear-gradient(top, rgb(114, 122, 134), rgb(80, 88, 100));
+    background-image: -ms-linear-gradient(top, rgb(114, 122, 134), rgb(80, 88, 100));
+    background-image: linear-gradient(top, rgb(114, 122, 134), rgb(80, 88, 100));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#727a86', EndColorStr='#505864');
+    border-bottom: 1px solid #33373d;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #878e98;
+    -moz-box-shadow: inset 0px 1px 0px 0px #878e98;
+    box-shadow: inset 0px 1px 0px 0px #878e98;
+    width: 100%;
+    height: 2.75em;
+    line-height: 2.75em;
+    text-indent: 2.75em;
+    display: block;
+    position: relative;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0px 1px 0px rgba(0,0,0,.5);
+    text-align: center
+}
+
+.menu ul li a {
+    background: #fff;
+    border-bottom: 1px solid #efeff0;
+    width: 100%;
+    height: 2.75em;
+    line-height: 2.75em;
+    text-indent: 2.75em;
+    display: block;
+    position: relative;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.923em;
+    font-weight: 400;
+    color: #878d95;
+}
+.menu ul li:last-child a {
+    border-bottom: 1px solid #33373d;
+    text-align: center
+}
+
+.menu > li > a:hover, 
+.menu > li > a.active {
+    background-color: #35afe3;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(69, 199, 235)),to(rgb(38, 152, 219)));
+    background-image: -webkit-linear-gradient(top, rgb(69, 199, 235), rgb(38, 152, 219));
+    background-image: -moz-linear-gradient(top, rgb(69, 199, 235), rgb(38, 152, 219));
+    background-image: -o-linear-gradient(top, rgb(69, 199, 235), rgb(38, 152, 219));
+    background-image: -ms-linear-gradient(top, rgb(69, 199, 235), rgb(38, 152, 219));
+    background-image: linear-gradient(top, rgb(69, 199, 235), rgb(38, 152, 219));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#45c7eb', EndColorStr='#2698db');
+    border-bottom: 1px solid #103c56;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #6ad2ef;
+    -moz-box-shadow: inset 0px 1px 0px 0px #6ad2ef;
+    box-shadow: inset 0px 1px 0px 0px #6ad2ef;
+}
+.menu > li > a.active {
+    border-bottom: 1px solid #1a638f;
+}
+.menu > li > a:before {
+    content: '';
+    background-image: url(../imagenes/chat.png);
+    background-repeat: no-repeat;
+    font-size: 36px;
+    height: 1em;
+    width: 1em;
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    margin: -.3em 0 0 0;
+}
+.item1 > a:before {
+    background-position: 0 0;
+}
+.item2 > a:before {
+    background-position: -38px 0;
+}
+.item3 > a:before {
+    background-position: 0 -38px;
+}
+.item4 > a:before {
+    background-position: -38px -38px;
+}
+.item5 > a:before {
+    background-position: -76px 0;
+}
+.menu > li > a span {
+    font-size: 0.857em; 
+    display: inline-block;
+    position: absolute;
+    right: 1em;
+    top: 50%; 
+    background: #48515c;
+    line-height: 1em;
+    height: 1em;
+    padding: .4em .6em;
+    margin: -.8em 0 0 0; 
+    color: #fff;
+    text-indent: 0;
+    text-align: center;
+    -webkit-border-radius: .769em;
+    -moz-border-radius: .769em;
+    border-radius: .769em;
+    -webkit-box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, .26), 0px 1px 0px 0px rgba(255, 255, 255, .15);
+    -moz-box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, .26), 0px 1px 0px 0px rgba(255, 255, 255, .15);
+    box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, .26), 0px 1px 0px 0px rgba(255, 255, 255, .15);
+    text-shadow: 0px 1px 0px rgba(0,0,0,.5);
+    font-weight: 500;
+}
+.menu > li > a:hover span, .menu > li a.active span {
+    background: #2173a1;
+}
+
+.menu ul > li > a span {
+    font-size: 0.857em; 
+    display: inline-block;
+    position: absolute;
+    right: 1em;
+    top: 50%; /
+    background: #fff;
+    border: 1px solid #d0d0d3;
+    line-height: 1em;
+    height: 1em;
+    padding: .4em .7em;
+    margin: -.9em 0 0 0; 
+    color: #878d95;
+    text-indent: 0;
+    text-align: center;
+    -webkit-border-radius: .769em;
+    -moz-border-radius: 769em;
+    border-radius: 769em;
+    text-shadow: 0px 0px 0px rgba(255,255,255,.01));
+}
+.menu > li > ul li a:before {
+    content: '>';
+    font-size: 8px;
+    color: #bcbcbf;
+    position: absolute;
+    width: 1em;
+    height: 1em;
+    top: 0;
+    left: -2.7em;
+}
+ 
+.menu > li > ul li:hover a,
+.menu > li > ul li:hover a span,
+.menu > li > ul li:hover a:before {
+    color: #32373D;
+}
+
+.site-wrap {
+  /* Critical position and size styles */
+  min-height: 100%;
+  min-width: 100%;
+ background-color:#0B4C5F;
+  position: relative;
+  top: 25px;
+  bottom: 100%;
+  left: 0;
+  z-index: 1;
+  
+  /* non-critical apperance styles */
+  padding: 0;
+  background-image: linear-gradient(135deg, rgb(254,255,255) 0%,rgb(221,241,249) 35%,rgb(160,216,239) 100%);
+  background-size: 180%;
+}
+/* Nav Trigger */
+.nav-trigger {
+  /* critical styles - hide the checkbox input */
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+}
+
+label[for="nav-trigger"] {
+  /* critical positioning styles */
+  position: fixed;
+  left: 15px; top: 15px;
+  z-index: 2;
+  
+  /* non-critical apperance styles */
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' x='0px' y='0px' width='30px' height='30px' viewBox='0 0 30 30' enable-background='new 0 0 30 30' xml:space='preserve'><rect width='30' height='6'/><rect y='24' width='30' height='6'/><rect y='12' width='30' height='6'/></svg>");
+  background-size: contain;
+}
+
+/* Make the Magic Happen */
+.nav-trigger + label, .site-wrap {
+  transition: left 0.2s;
+}
+
+.nav-trigger:checked + label {
+  left: 215px;
+}
+
+.nav-trigger:checked ~ .site-wrap {
+  left: 200px;
+  box-shadow: 0 0 5px 5px rgba(0,0,0,0.5);
+}
+
+body {
+	/* Without this, the body has excess horizontal scroll when the menu is open */
+  overflow-x: hidden;
+}
+/* Additional non-critical styles */
+
+h1, h3, p {
+  max-width: 600px;
+  margin: 0 auto 1em;
+}
+
+code {
+	padding: 2px;
+	background: #ddd;
+}
+
+/* Micro reset */
+*,*:before,*:after{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:0;}
+html, body { height: 100%; width: 100%; font-family: Helvetica, Arial, sans-serif; }
+
+.username{
+	color:#fff;
+	padding:5px 0px;
+}

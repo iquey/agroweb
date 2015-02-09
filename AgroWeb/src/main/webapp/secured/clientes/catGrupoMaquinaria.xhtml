@@ -1,0 +1,101 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/templatePage.xhtml">
+
+
+	<ui:define name="content">
+
+		<h:head>
+
+			<style type="text/css">
+table {
+	margin-left: 2px;
+	margin-right: auto;
+}
+
+.colEstatus {
+	font-size: 70%;
+	width: 10%;
+	text-align: center;
+}
+</style>
+
+		</h:head>
+		<h:body>
+			<center>
+				<span class="tituloPantalla"> Catálogo de Grupos de Maquinaria </span>
+			</center>
+			<h:form id="form">
+				<p:messages id="messages" showDetail="true" autoUpdate="true"
+					closable="true" />
+				<br />
+				<br />
+				<br />
+				<br />
+
+				<p:commandButton value="Agregar" onclick="PF('dlgNuevo').show();" />
+				<br />
+				<br />
+
+				<p:dataTable var="grupoMaq" id="tablaGrupoMaq"
+					value="#{catGrupoMaquinariaMB.listaMaquinaria}" scrollWidth="1024"
+					style="margin-bottom:20px">
+
+					<f:facet name="header">Grupos de Maquinaria</f:facet>
+
+					<p:column styleClass="colEstatus" headerText="Descripcion"
+						footerText="Descripcion">
+						<h:outputText value="#{grupoMaq.descripcion}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Editar / Eliminar"
+						footerText="Editar / Eliminar">
+						<p:commandButton icon="ui-icon-pencil"
+							oncomplete="PF('dlgNuevo').show();" update=":form:idDlgNuevo">
+							<f:setPropertyActionListener value="#{grupoMaq}"
+								target="#{catGrupoMaquinariaMB.clGrupoMaquinariaNuevo}" />
+						</p:commandButton>
+						<p:commandButton icon="ui-icon-trash"
+							action="#{catGrupoMaquinariaMB.delete}" update="tablaGrupoMaq"
+							onsuccess="setTimeout ( '$(\'#form\\\\:messages\').hide()', 3500);">
+							<f:setPropertyActionListener value="#{grupoMaq}"
+								target="#{catGrupoMaquinariaMB.clGrupoMaquinariaSeleccionado}" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+
+				<p:dialog id="idDlgNuevo" widgetVar="dlgNuevo" closable="true"
+					showEffect="clip" hideEffect="clip" visible="false" width="500px"
+					height="550px" header="Agregar GRUPO DE MAQUINARIA">
+
+					<p:ajax event="close" listener="#{catGrupoMaquinariaMB.cancelar}"
+						update="idDlgNuevo" />
+
+
+					<p:panelGrid columns="2">
+
+
+						<h:outputText value="Descripcion" />
+
+						<p:inputText
+							value="#{catGrupoMaquinariaMB.clGrupoMaquinariaNuevo.descripcion}"
+							style="width:100%" />
+
+						<p:commandButton value="Agregar"
+							actionListener="#{catGrupoMaquinariaMB.add}"
+							oncomplete="PF('dlgNuevo').hide();"
+							onsuccess="setTimeout ( '$(\'#form\\\\:messages\').hide()', 2500);"
+							update="tablaGrupoMaq idDlgNuevo" />
+
+						<p:commandButton value="Cancelar"
+							actionListener="#{catGrupoMaquinariaMB.cancelar}"
+							oncomplete="PF('dlgNuevo').hide();" update="idDlgNuevo" />
+
+					</p:panelGrid>
+				</p:dialog>
+			</h:form>
+		</h:body>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,413 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/templatePage.xhtml">
+
+
+	<ui:define name="content">
+
+		<h:head>
+
+			<style type="text/css">
+table {
+	margin-left: 2px;
+	margin-right: auto;
+}
+
+.colEstatus {
+	font-size: 70%;
+	width: 10%;
+	text-align: center;
+}
+
+.panelNoBorder,.panelNoBorder tr,.panelNoBorder td {
+	border: hidden;
+	border-color: white;
+}
+</style>
+
+		</h:head>
+		<h:body>
+			<center>
+				<span class="tituloPantalla"> Catálogo de Insumos </span>
+			</center>
+			<h:form id="form">
+				<p:messages id="messages" showDetail="true" autoUpdate="true"
+					closable="true" />
+				<br />
+				<br />
+				<br />
+				<br />
+
+				<p:commandButton value="Agregar" onclick="PF('dlgNuevo').show();" />
+				<br />
+				<br />
+
+				<p:dataTable var="insumo" id="tablaInsumo"
+					value="#{catInsumosMB.listaInsumos}" scrollWidth="1024"
+					style="margin-bottom:20px">
+
+					<f:facet name="header">Insumos</f:facet>
+
+					<p:column styleClass="colEstatus" headerText="Grupo Insumo"
+						footerText="Grupo Insumo">
+						<h:outputText
+							value="#{insumo.catalogoSubgrupoInsumos.catalogoGrupoInsumo.descripcion}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Sub-Grupo"
+						footerText="Sub-Grupo">
+						<h:outputText
+							value="#{insumo.catalogoSubgrupoInsumos.descripcion}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Descripcion"
+						footerText="Descripcion">
+						<h:outputText value="#{insumo.descripcion}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Unidad de Compra"
+						footerText="Unidad de Compra">
+						<h:outputText value="#{insumo.catalogoUnidadCompra.nombre}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Costo de Compra"
+						footerText="Costo de Compra">
+						<h:outputText value="#{insumo.costoCompra}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Unidad de Salida"
+						footerText="Unidad de Salida">
+						<h:outputText value="#{insumo.catalogoUnidadVenta.nombre}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Costo de Salida"
+						footerText="Costo de Salida">
+						<h:outputText value="#{insumo.costoSalida}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Porcentaje de Salida"
+						footerText="Porcentaje de Salida">
+						<h:outputText value="#{insumo.porcentajeSalida}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Centro de Costos"
+						footerText="Centro de Costos">
+						<h:outputText value="#{insumo.catalogoCentroCostos.descripcion}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Factor de Conversion"
+						footerText="Factor de Conversion">
+						<h:outputText value="#{insumo.factorConversion}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Cuenta Contable"
+						footerText="Cuenta Contable">
+						<h:outputText value="#{insumo.cuentaContable}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Editar / Eliminar"
+						footerText="Editar / Eliminar">
+
+						<p:commandButton icon="ui-icon-pencil"
+							oncomplete="PF('dlgNuevo').show();" update=":form:idDlgNuevo">
+							<f:setPropertyActionListener value="#{insumo}"
+								target="#{catInsumosMB.clInsumosNuevo}" />
+						</p:commandButton>
+
+						<p:commandButton icon="ui-icon-trash"
+							action="#{catInsumosMB.delete}" update="tablaInsumo"
+							onsuccess="setTimeout ( '$(\'#form\\\\:messages\').hide()', 2500);">
+							<f:setPropertyActionListener value="#{insumo}"
+								target="#{catInsumosMB.clInsumosSeleccionado}" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+
+				<p:dialog id="idDlgNuevo" widgetVar="dlgNuevo" closable="true"
+					showEffect="clip" hideEffect="clip" visible="false" width="500px"
+					height="550px" header="Agregar Insumo">
+
+					<p:ajax event="close" listener="#{catInsumosMB.cancelar}"
+						update="idDlgNuevo" />
+
+
+
+					<br />
+					<br />
+					<p:panelGrid columns="3" styleClass="panelNoBorder">
+
+						<h:outputText value="Sub Grupo de Insumo" />
+
+						<p:selectOneMenu value="#{catInsumosMB.clInsumosNuevo.idSubgrupo}">
+							<f:selectItems var="tipoSubGrupo"
+								value="#{catInsumosMB.listaSubGrupo}"
+								itemLabel="#{tipoSubGrupo.descripcion}"
+								itemValue="#{tipoSubGrupo.id}" />
+						</p:selectOneMenu>
+
+						<p:commandButton value="+"
+							onclick="PF('dlgNuevoSubGrupo').show();PF('dlgNuevo').hide();" />
+
+						<h:outputText value="Descripcion" />
+
+						<p:inputText value="#{catInsumosMB.clInsumosNuevo.descripcion}" />
+
+						<p:outputLabel />
+
+						<h:outputText value="Unidad de Compra" />
+
+						<p:selectOneMenu
+							value="#{catInsumosMB.clInsumosNuevo.idUnidadCompra}">
+							<f:selectItems var="tipoElemento"
+								value="#{catInsumosMB.listaUnidades}"
+								itemLabel="#{tipoElemento.nombre}"
+								itemValue="#{tipoElemento.id}" />
+						</p:selectOneMenu>
+
+						<p:commandButton value="+"
+							onclick="PF('dlgNuevaUnidadCompra').show();PF('dlgNuevo').hide();" />
+
+
+						<h:outputText value="Costo de Compra" />
+
+						<p:inputText value="#{catInsumosMB.clInsumosNuevo.costoCompra}" />
+
+						<p:outputLabel />
+
+						<h:outputText value="Unidad de Salida" />
+
+						<p:selectOneMenu
+							value="#{catInsumosMB.clInsumosNuevo.idUnidadSalida}">
+							<f:selectItems var="tipoElemento"
+								value="#{catInsumosMB.listaUnidades}"
+								itemLabel="#{tipoElemento.nombre}"
+								itemValue="#{tipoElemento.id}" />
+						</p:selectOneMenu>
+
+						<p:commandButton value="+"
+							onclick="PF('dlgNuevaUnidadVenta').show();PF('dlgNuevo').hide();" />
+
+						<h:outputText value="Costo de Salida" />
+
+						<p:inputText value="#{catInsumosMB.clInsumosNuevo.costoSalida}" />
+
+						<p:outputLabel />
+
+						<h:outputText value="Porcentaje de Salida" />
+
+						<p:inputText
+							value="#{catInsumosMB.clInsumosNuevo.porcentajeSalida}" />
+
+						<p:outputLabel />
+
+						<h:outputText value="Centro de Costos" />
+
+						<p:selectOneMenu
+							value="#{catInsumosMB.clInsumosNuevo.idCentroCostos}">
+							<f:selectItems var="tipoCCosto"
+								value="#{catInsumosMB.listaCentroCostos}"
+								itemLabel="#{tipoCCosto.descripcion}"
+								itemValue="#{tipoCCosto.id}" />
+						</p:selectOneMenu>
+
+						<p:commandButton value="+"
+							onclick="PF('dlgNuevoCCostos').show();PF('dlgNuevo').hide();" />
+
+						<h:outputText value="Factor de conversion" />
+
+						<p:inputText
+							value="#{catInsumosMB.clInsumosNuevo.factorConversion}" />
+
+						<p:outputLabel />
+
+						<h:outputText value="Cuenta Contable" />
+
+						<p:inputText value="#{catInsumosMB.clInsumosNuevo.cuentaContable}" />
+
+						<p:outputLabel />
+
+					</p:panelGrid>
+
+					<br />
+					<br />
+					<p:panelGrid columns="2" styleClass="panelNoBorder">
+
+						<p:commandButton value="Agregar"
+							actionListener="#{catInsumosMB.add}"
+							oncomplete="PF('dlgNuevo').hide();"
+							onsuccess="setTimeout ( '$(\'#form\\\\:messages\').hide()', 2500);"
+							update="idDlgNuevo tablaInsumo" />
+
+						<p:commandButton value="Cancelar"
+							actionListener="#{catInsumosMB.cancelar}"
+							oncomplete="PF('dlgNuevo').hide();" update="idDlgNuevo" />
+
+					</p:panelGrid>
+				</p:dialog>
+
+				<p:dialog id="idDlgNuevoSubGrupo" widgetVar="dlgNuevoSubGrupo"
+					closable="true" showEffect="clip" hideEffect="clip" visible="false"
+					width="500px" height="550px" header="Agregar Sub Grupo de Insumo">
+
+
+					<br />
+					<br />
+					<p:panelGrid columns="3" styleClass="panelNoBorder">
+
+
+						<h:outputText value="Descripcion" />
+
+						<p:inputText
+							value="#{catInsumosMB.clSubgrupoInsumosNuevo.descripcion}"
+							style="width:100%" />
+
+						<p:outputLabel />
+
+
+						<h:outputText value="Tipo Grupo de Insumo" />
+
+						<p:selectOneMenu
+							value="#{catInsumosMB.clSubgrupoInsumosNuevo.idGrupo}">
+							<f:selectItems var="tipoGrupo"
+								value="#{catSubGrupoInsumosMB.listaGruposInsumos}"
+								itemLabel="#{tipoGrupo.descripcion}" itemValue="#{tipoGrupo.id}" />
+						</p:selectOneMenu>
+						<p:commandButton value="+"
+							onclick="PF('dlgNuevoGrupo').show();PF('dlgNuevoSubGrupo').hide();" />
+
+					</p:panelGrid>
+
+					<br />
+					<br />
+					<p:panelGrid columns="2" styleClass="panelNoBorder">
+
+						<p:commandButton value="Agregar"
+							actionListener="#{catInsumosMB.addSubGrupoInsumo}"
+							oncomplete="PF('dlgNuevo').show();PF('dlgNuevoSubGrupo').hide();"
+							onsuccess="setTimeout ( '$(\'#form\\\\:messages\').hide()', 2500);"
+							update="idDlgNuevo" />
+
+						<p:commandButton value="Cancelar"
+							actionListener="#{catInsumosMB.cancelar}"
+							oncomplete="PF('dlgNuevo').show();PF('dlgNuevoSubGrupo').hide();"
+							update="idDlgNuevo" />
+
+					</p:panelGrid>
+				</p:dialog>
+
+				<p:dialog id="idDlgNuevoGrupo" widgetVar="dlgNuevoGrupo"
+					closable="true" showEffect="clip" hideEffect="clip" visible="false"
+					width="500px" height="550px" header="Agregar Grupo de Insumo">
+
+
+					<p:panelGrid columns="2" styleClass="panelNoBorder">
+
+
+						<h:outputText value="Descripcion" />
+
+						<p:inputText
+							value="#{catInsumosMB.clGrupoInsumosNuevo.descripcion}"
+							style="width:100%" />
+
+						<h:outputText value="Orden" />
+
+						<p:inputText value="#{catInsumosMB.clGrupoInsumosNuevo.orden}"
+							style="width:100%" />
+
+
+						<p:commandButton value="Agregar"
+							actionListener="#{catInsumosMB.addGrupoInsumo}"
+							oncomplete="PF('dlgNuevoSubGrupo').show();PF('dlgNuevoGrupo').hide();"
+							onsuccess="setTimeout ( '$(\'#form\\\\:messages\').hide()', 2500);"
+							update="idDlgNuevoSubGrupo" />
+
+						<p:commandButton value="Cancelar"
+							actionListener="#{catGrupoInsumosMB.cancelar}"
+							oncomplete="PF('dlgNuevoGrupo').hide();PF('dlgNuevoSubGrupo').show();"
+							update="idDlgNuevoSubGrupo" />
+
+					</p:panelGrid>
+				</p:dialog>
+
+				<p:dialog id="idDlgNuevaUnidadCompra"
+					widgetVar="dlgNuevaUnidadCompra" closable="true" showEffect="clip"
+					hideEffect="clip" visible="false" width="500px" height="550px"
+					header="Agregar Unidad">
+
+
+					<p:panelGrid columns="2" styleClass="panelNoBorder">
+
+
+						<h:outputText value="Descripcion" />
+
+						<p:inputText value="#{catInsumosMB.catalogoNuevoCompra.nombre}"
+							style="width:100%" />
+
+						<p:commandButton value="Agregar"
+							actionListener="#{catInsumosMB.addCatalogCompra}"
+							oncomplete="PF('dlgNuevo').show();PF('idDlgNuevaUnidadCompra').hide();"
+							onsuccess="setTimeout ( '$(\'#form\\\\:messages\').hide()', 2500);"
+							update="idDlgNuevo idDlgNuevaUnidadCompra" />
+
+						<p:commandButton value="Cancelar"
+							actionListener="#{catInsumosMB.cancelar}"
+							oncomplete="PF('dlgNuevaUnidadCompra').hide();PF('dlgNuevo').show();"
+							update="idDlgNuevo idDlgNuevaUnidadCompra" />
+
+					</p:panelGrid>
+				</p:dialog>
+
+				<p:dialog id="idDlgNuevaUnidadVenta" widgetVar="dlgNuevaUnidadVenta"
+					closable="true" showEffect="clip" hideEffect="clip" visible="false"
+					width="500px" height="550px" header="Agregar Unidad">
+
+
+					<p:panelGrid columns="2" styleClass="panelNoBorder">
+
+
+						<h:outputText value="Descripcion" />
+
+						<p:inputText value="#{catInsumosMB.catalogoNuevoVenta.nombre}"
+							style="width:100%" />
+
+						<p:commandButton value="Agregar"
+							actionListener="#{catInsumosMB.addCatalogVenta}"
+							oncomplete="PF('dlgNuevo').show();PF('idDlgNuevaUnidadVenta').hide();"
+							onsuccess="setTimeout ( '$(\'#form\\\\:messages\').hide()', 2500);"
+							update="idDlgNuevo idDlgNuevaUnidadVenta" />
+
+						<p:commandButton value="Cancelar"
+							actionListener="#{catInsumosMB.cancelar}"
+							oncomplete="PF('dlgNuevaUnidadVenta').hide();PF('dlgNuevo').show();"
+							update="idDlgNuevo idDlgNuevaUnidadVenta" />
+
+					</p:panelGrid>
+				</p:dialog>
+
+
+				<p:dialog id="idDlgNuevoCCostos" widgetVar="dlgNuevoCCostos"
+					closable="true" showEffect="clip" hideEffect="clip" visible="false"
+					width="500px" height="550px" header="Agregar Centro de Costo">
+
+
+					<p:panelGrid columns="2" styleClass="panelNoBorder">
+
+
+						<h:outputText value="Descripcion" />
+
+						<p:inputText
+							value="#{catInsumosMB.clCentroCostosNuevo.descripcion}"
+							style="width:100%" />
+
+						<p:commandButton value="Agregar"
+							actionListener="#{catInsumosMB.addCentroCostos}"
+							oncomplete="PF('dlgNuevoCCostos').hide();PF('dlgNuevo').show();"
+							onsuccess="setTimeout ( '$(\'#form\\\\:messages\').hide()', 2500);"
+							update="idDlgNuevo idDlgNuevoCCostos" />
+
+						<p:commandButton value="Cancelar"
+							actionListener="#{catInsumosMB.cancelar}"
+							oncomplete="PF('dlgNuevoCCostos').hide();PF('dlgNuevo').show();"
+							update="idDlgNuevo idDlgNuevoCCostos" />
+
+					</p:panelGrid>
+				</p:dialog>
+
+
+
+			</h:form>
+		</h:body>
+	</ui:define>
+</ui:composition>

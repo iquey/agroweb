@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="Cache-Control" content="no-cache" />
+<!-- 	<link rel="stylesheet" href="#{request.contextPath}/css/reset.css"
+		type="text/css" /> 
+	<link rel="stylesheet" href="#{request.contextPath}/css/styles.css"
+		type="text/css" />  
+		<link rel="stylesheet" href="#{request.contextPath}/css/ces.css"
+		type="text/css" />  -->
+	<link rel="stylesheet" href="#{request.contextPath}/css/nuevo.css"
+		type="text/css" /> 
+
+	<title>AGROWEB</title>
+</h:head>
+
+<h:body>
+<div id="wrapper">
+ 	<header>
+ 	<div class='define'>
+		<div id="header">
+			<ui:include src="headerLogin.xhtml"></ui:include>
+		</div>
+	</div>
+	</header>
+	<section>
+	<div class='define'>
+		<div id="mainContent">
+			<ui:insert name="content"></ui:insert>
+		</div>
+	</div>
+	</section>
+	</div>
+	<footer>
+	<div class='define'>
+		<div>
+			<ui:include src="footerLogin.xhtml"></ui:include>
+		</div>
+		</div>
+	</footer>
+</h:body>
+</html>

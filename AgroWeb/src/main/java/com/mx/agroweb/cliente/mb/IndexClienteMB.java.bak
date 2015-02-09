@@ -1,0 +1,62 @@
+package com.mx.agroweb.cliente.mb;
+
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import com.mx.agroweb.cliente.service.ClEmpresaService;
+import com.mx.agroweb.cliente.service.ClUsuarioService;
+import com.mx.agroweb.cliente.vo.ClEmpresaVO;
+import com.mx.agroweb.cliente.vo.ClUsuarioVO;
+
+@ManagedBean
+@RequestScoped
+public class IndexClienteMB {
+
+	private ClUsuarioService clUsuarioService;
+	private ClEmpresaService clEmpresaService;
+	private String nombreUsuario;
+
+	private List<ClEmpresaVO> empresasList = new ArrayList<ClEmpresaVO>();
+
+	@PostConstruct
+	public void init() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		String user = (String) context.getExternalContext().getSessionMap().get("user");
+		String pass = (String) context.getExternalContext().getSessionMap().get("psw");
+		if (clUsuarioService == null) {
+			ApplicationContext ctx = new ClassPathXmlApplicationContext("application-context-admin.xml");
+			clUsuarioService = (ClUsuarioService) ctx.getBean("clUsuarioServiceImpl");
+			clEmpresaService = (ClEmpresaService) ctx.getBean("clEmpresaServiceImpl");
+		}
+
+		// Settear nuevo dataSource
+		clUsuarioService.setDinamicDataSource();
+		clEmpresaService.setDinamicDataSource();
+
+		ClUsuarioVO clUsuarioVO = clUsuarioService.getUsuario(user, pass);
+
+		empresasList = clEmpresaService.getEmpresasByIdUser(clUsuarioVO.getId());
+	}
+
+	public String getNombreUsuario() {
+		return nombreUsuario;
+	}
+
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
+	}
+
+	public List<ClEmpresaVO> getEmpresasList() {
+		return empresasList;
+	}
+
+	public void setEmpresasList(List<ClEmpresaVO> empresasList) {
+		this.empresasList = empresasList;
+	}
+
+}

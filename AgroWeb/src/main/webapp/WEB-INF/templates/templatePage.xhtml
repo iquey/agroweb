@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="Cache-Control" content="no-cache" />
+	<!-- 	<link rel="stylesheet" href="#{request.contextPath}/css/reset.css"
+		type="text/css" /> 
+	<link rel="stylesheet" href="#{request.contextPath}/css/styles.css"
+		type="text/css" />  
+		<link rel="stylesheet" href="#{request.contextPath}/css/ces.css"
+		type="text/css" />  -->
+	<link rel="stylesheet" href="#{request.contextPath}/css/page.css"
+		type="text/css" />
+	<!-- 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> -->
+	<title>AGROWEB</title>
+</h:head>
+
+<h:body>
+	<ul id="w" class="navigation">
+		<ul class="menu">
+			<li class="item1"><h:link value="PROVEEDORES" />
+				<ul>
+					<li class="subitem1"><h:link value="CATALOGO PROVEEDORES"
+							outcome="/secured/clientes/catProveedor" /></li>
+
+				</ul></li>
+			<li class="item1"><h:link value="INVENTARIOS" />
+				<ul>
+					<li class="subitem1"><h:link value="ORDENES DE COMPRA" /></li>
+					<li class="subitem2"><h:link
+							value="MOVIMIENTOS INVENTARIO CAMPO" /></li>
+					<li class="subitem3"><h:link
+							value="MOVIMIENTOS INVENTARIO MAQUINARIA" /></li>
+				</ul></li>
+			<li class="item1"><h:link value="INSUMOS" />
+				<ul>
+					<li class="subitem1"><h:link value="INSUMOS"
+							outcome="/secured/clientes/catInsumos" /></li>
+					<li class="subitem2"><h:link value="CENTRO DE COSTOS"
+							outcome="/secured/clientes/catCentroCostos" /></li>
+					<li class="subitem3"><h:link value="GRUPO DE INSUMOS"
+							outcome="/secured/clientes/catGrupoInsumos" /></li>
+					<li class="subitem3"><h:link value="SUB GRUPO DE INSUMOS"
+							outcome="/secured/clientes/catSubGrupoInsumo" /></li>
+
+				</ul></li>
+			<li class="item1"><h:link value="NUEVOS CATALOGOS" />
+				<ul>
+					<li class="subitem1"><h:link value="ZONAS"
+							outcome="/secured/clientes/catZonas" /></li>
+
+					<li class="subitem1"><h:link value="MARCAS"
+							outcome="/secured/clientes/catMarcas" /></li>
+
+					<li class="subitem1"><h:link value="PROPIETARIOS"
+							outcome="/secured/clientes/catPropietarios" /></li>
+
+					<li class="subitem1"><h:link value="GRUPO DE MAQUINARIA"
+							outcome="/secured/clientes/catGrupoMaquinaria" /></li>
+
+					<li class="subitem1"><h:link value="TIPO DE CAMBIO"
+							outcome="/secured/clientes/catTipoCambio" /></li>
+
+					<li class="subitem1"><h:link value="RANCHO"
+							outcome="/secured/clientes/catRanchos" /></li>
+
+					<li class="subitem1"><h:link value="MAQUINARIA"
+							outcome="/secured/clientes/catMaquinaria" /></li>
+
+				</ul></li>
+			<li class="item1"><h:link value="Menu 4" />
+				<ul>
+					<li class="subitem1"><h:link value="SubMenu 4a" /></li>
+					<li class="subitem2"><h:link value="SubMenu 4b" /></li>
+					<li class="subitem3"><h:link value="SubMenu 4c" /></li>
+				</ul></li>
+			<li class="item1"><h:link value="Menu 5" />
+				<ul>
+					<li class="subitem1"><h:link value="SubMenu 5a" /></li>
+					<li class="subitem2"><h:link value="SubMenu 5b" /></li>
+				</ul></li>
+			<li class="item1"><h:link value="Menu 6" />
+				<ul>
+					<li class="subitem1"><h:link value="SubMenu 6a" /></li>
+					<li class="subitem2"><h:link value="SubMenu 6b" /></li>
+					<li class="subitem3"><h:link value="SubMenu 6c" /></li>
+				</ul></li>
+			<li class="item1"><h:link value="Menu 7" />
+				<ul>
+					<li class="subitem1"><h:link value="SubMenu 7a" /></li>
+				</ul></li>
+		</ul>
+
+	</ul>
+
+	<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+	<label for="nav-trigger"></label>
+	<header>
+		<div class='define'>
+			<div id="header">
+				<ui:include src="header.xhtml"></ui:include>
+			</div>
+		</div>
+	</header>
+
+
+	<div class="site-wrap">
+		<div id="wrapper">
+
+			<section>
+				<div class='define'>
+					<div id="mainContent"
+						style="margin-right: 40px; margin-left: 40px;">
+						<ui:insert name="content"></ui:insert>
+					</div>
+				</div>
+			</section>
+		</div>
+		<footer>
+			<div class='define'>
+				<div>
+					<ui:include src="footer.xhtml"></ui:include>
+				</div>
+			</div>
+		</footer>
+	</div>
+
+
+</h:body>
+<script type="text/javascript">
+	$(function() {
+
+		var menu_ul = $('.menu > li > ul'), menu_a = $('.menu > li > a');
+
+		menu_ul.hide();
+
+		menu_a.click(function(e) {
+			e.preventDefault();
+			if (!$(this).hasClass('active')) {
+				menu_a.removeClass('active');
+				menu_ul.filter(':visible').slideUp('normal');
+				$(this).addClass('active').next().stop(true, true).slideDown(
+						'normal');
+			} else {
+				$(this).removeClass('active');
+				$(this).next().stop(true, true).slideUp('normal');
+			}
+		});
+
+	});
+</script>
+</html>

@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/templateMenu.xhtml">
+
+
+	<ui:define name="content">
+
+		<h:head>
+			<title>Elige tu empresa:::::</title>
+		</h:head>
+		<h:body>
+			<center>
+				<span class="tituloPantalla"> Catálogo de Empresas </span>
+			</center>
+			<h:form id="form">
+				<p:messages id="messages" showDetail="true" autoUpdate="true"
+					closable="true" />
+				<br />
+				<br />
+				<br />
+				<br />
+
+				<p:dataTable var="empresa" value="#{indexClienteMB.empresasList}">
+					<p:column headerText="Empresa"
+						style="width:32px;text-align: center">
+						<h:outputText value="#{empresa.nombre}" />
+					</p:column>
+					<p:column style="width:32px;text-align:center"
+						headerText="Selecciona">
+						<p:commandButton icon="ui-icon-search"
+							action="#{indexClienteMB.onRowSelect}">
+							<f:setPropertyActionListener value="#{empresa}"
+								target="#{indexClienteMB.empresaSeleccionada}" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</h:body>
+	</ui:define>
+</ui:composition>

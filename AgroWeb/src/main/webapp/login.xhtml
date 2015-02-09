@@ -1,0 +1,54 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/templateLogin.xhtml">
+	<ui:define name="content">
+		<h:head>
+			<title>Login form</title>
+			<!--  	<link type="text/css" rel="stylesheet" href="css/agroweb.css" />-->
+			<link rel="SHORTCUT ICON" href="imagenes/movi.ico" />
+		</h:head>
+		<h:body>
+			<h:form id="login-form">
+				<table>
+					<tr>
+						<th rowspan="5"><div style="width: 500px height:234px;">
+								<img class="logoagroweb" src="imagenes/logoagrowebtrans.png"
+									style="float: left;" />
+							</div></th>
+						<th colspan="2" class="colorth">INICIO DE SESION</th>
+
+					</tr>
+					<tr class="color">
+						<td><h:outputText value="Usuario:" /></td>
+						<td><h:inputText value="#{loginMB.username}" id="username" /></td>
+					</tr>
+					<tr class="color">
+						<td><h:outputText value="Contraseña:" /></td>
+						<td><h:inputSecret value="#{loginMB.password}" id="password" /></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+						<div class="buttons">
+						<h:commandButton id="button" value="Inicio"
+								action="#{loginMB.doLogin}" styleClass="apply" />
+								</div>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2"><h:commandLink
+								action="#{navigationBean.redirectToInfo}" value="Info page" /></td>
+					</tr>
+					<tr>
+						<td colspan="3"><h:messages /></td>
+					</tr>
+				</table>
+
+			</h:form>  
+		</h:body>
+	</ui:define>
+
+</ui:composition>
+

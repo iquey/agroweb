@@ -1,0 +1,949 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/templatePage.xhtml">
+
+
+	<ui:define name="content">
+
+		<h:head>
+
+			<style type="text/css">
+table {
+	margin-left: 2px;
+	margin-right: auto;
+}
+
+.colEstatus {
+	font-size: 70%;
+	width: 10%;
+	text-align: center;
+}
+
+.panelNoBorder,.panelNoBorder tr,.panelNoBorder td {
+	border: hidden;
+	border-color: white;
+}
+</style>
+
+		</h:head>
+		<h:body>
+			<center>
+				<span class="tituloPantalla"> Catálogo de Maquinaria </span>
+			</center>
+			<h:form id="form">
+				<p:messages id="messages" showDetail="true" autoUpdate="true"
+					closable="true" />
+				<br />
+				<br />
+				<br />
+				<br />
+
+				<p:commandButton value="Agregar" onclick="PF('dlgNuevo').show();" />
+				<br />
+				<br />
+
+				<p:dataTable var="maquinaria" id="tablaMaquinaria"
+					value="#{catMaquinariaMB.maquinariaList}" scrollable="true" scrollWidth="100%"
+					style="margin-bottom:20px">
+
+					<f:facet name="header">Maquinaria</f:facet>
+
+					<p:column styleClass="colEstatus" headerText="Grupo maquinaria"
+						footerText="Grupo maquinaria">
+						<h:outputText
+							value="#{maquinaria.idGrupoMaquinariaVO.descripcion}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Codigo"
+						footerText="Codigo">
+						<h:outputText value="#{maquinaria.codigo}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Descripcion"
+						footerText="Descripcion">
+						<h:outputText value="#{maquinaria.descripcion}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Año" footerText="Año">
+						<h:outputText value="#{maquinaria.anio}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Marca"
+						footerText="Marca">
+						<h:outputText value="#{maquinaria.idMarcaVO.descripcion}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Modelo"
+						footerText="Modelo">
+						<h:outputText value="#{maquinaria.modelo}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Numero de Serie"
+						footerText="Numero de Serie">
+						<h:outputText value="#{maquinaria.numSerie}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Propietario"
+						footerText="Propietario">
+						<h:outputText value="#{maquinaria.idPropietarioVO.descripcion}" />
+					</p:column>
+					<p:column styleClass="colEstatus"
+						headerText="Numero de Transmision"
+						footerText="Numero de Transmision">
+						<h:outputText value="#{maquinaria.numTransmision}" />
+					</p:column>
+					<p:column styleClass="colEstatus"
+						headerText="Numero de Serie del Motor"
+						footerText="Numero de Serie del Motor">
+						<h:outputText value="#{maquinaria.numSerieMotor}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Capacidad del Motor"
+						footerText="Capacidad del Motor">
+						<h:outputText value="#{maquinaria.capacidadMotor}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Fecha de Compra"
+						footerText="Fecha de Compra">
+						<h:outputText value="#{maquinaria.fechaCompra}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="FOTO"
+						footerText="FOTO">
+						<h:outputText value="#{maquinaria.img}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Costo Hora 1"
+						footerText="Costo Hora 1">
+						<h:outputText value="#{maquinaria.costoHora1}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Costo Hora 2"
+						footerText="Costo Hora 2">
+						<h:outputText value="#{maquinaria.costoHora2}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Costo Hora 3"
+						footerText="Costo Hora 3">
+						<h:outputText value="#{maquinaria.costoHora3}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Costo Hora 4"
+						footerText="Costo Hora 4">
+						<h:outputText value="#{maquinaria.costoHora4}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Horometro Compra"
+						footerText="Horometro Compra">
+						<h:outputText value="#{maquinaria.horometroCompra}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Horometro Inicial"
+						footerText="Horometro Inicial">
+						<h:outputText value="#{maquinaria.horometroInicial}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Tipo de Cambio"
+						footerText="Tipo de Cambio">
+						<h:outputText value="#{maquinaria.idTipoCambioVO.tipoCambio}" />
+					</p:column>
+					<p:column styleClass="colEstatus"
+						headerText="Pendimiento Importacion"
+						footerText="Pendimiento Importacion">
+						<h:outputText value="#{maquinaria.pedimientoImportacion}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Proveedor"
+						footerText="Proveedor">
+						<h:outputText value="#{maquinaria.idProveedorVO.nombre}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Observaciones"
+						footerText="Observaciones">
+						<h:outputText value="#{maquinaria.observaciones}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Fecha Venta"
+						footerText="Fecha Venta">
+						<h:outputText value="#{maquinaria.fechaVenta}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Comprador"
+						footerText="Comprador">
+						<h:outputText value="#{maquinaria.comprador}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Precio Venta"
+						footerText="Precio Venta">
+						<h:outputText value="#{maquinaria.precioVenta}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Precio Compra Pesos"
+						footerText="Precio Compra Pesos">
+						<h:outputText value="#{maquinaria.precioCompraPesos}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Precio Compra Dls"
+						footerText="Precio Compra Dls">
+						<h:outputText value="#{maquinaria.precioCompraDlls}" />
+					</p:column>
+					<p:column styleClass="colEstatus"
+						headerText="Flete Americano Pesos"
+						footerText="Flete Americano Pesos">
+						<h:outputText value="#{maquinaria.fleteAmericanoPesos}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Flete Americano Dls"
+						footerText="Flete Americano Pesos">
+						<h:outputText value="#{maquinaria.fleteAmericanoDlls}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Costo Broker Pesos"
+						footerText="Costo Broker Pesos">
+						<h:outputText value="#{maquinaria.costoBrokerPesos}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Costo Broker Dls"
+						footerText="Costo Broker Dls">
+						<h:outputText value="#{maquinaria.costoBrokerDlls}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Aduanales Pesos"
+						footerText="Aduanales Pesos">
+						<h:outputText value="#{maquinaria.aduanalesPesos}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Aduanales Dls"
+						footerText="Aduanales Dls">
+						<h:outputText value="#{maquinaria.aduanalesDlls}" />
+					</p:column>
+					<p:column styleClass="colEstatus"
+						headerText="Impuestos Mexicanos Pesos"
+						footerText="Impuestos Mexicanos Pesos">
+						<h:outputText value="#{maquinaria.impuestosMexicanosPesos}" />
+					</p:column>
+					<p:column styleClass="colEstatus"
+						headerText="Impuestos Mexicanos Dls"
+						footerText="Impuestos Mexicanos Dls">
+						<h:outputText value="#{maquinaria.impuestosMexicanosDlls}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Flete Mexicano Pesos"
+						footerText="Flete Mexicano Pesos">
+						<h:outputText value="#{maquinaria.fleteMexicanoPesos}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Flete Mexicano Dls"
+						footerText="Flete Mexicano Dls">
+						<h:outputText value="#{maquinaria.fleteMexicanoDlls}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Seguro Pesos"
+						footerText="Seguro Pesos">
+						<h:outputText value="#{maquinaria.seguroPesos}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Seguro Dls"
+						footerText="Seguro Dls">
+						<h:outputText value="#{maquinaria.seguroDlls}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Otros Gastos Pesos"
+						footerText="Otros Gastos Pesos">
+						<h:outputText value="#{maquinaria.otrosGastosPesos}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Otros Gastos Dls"
+						footerText="Otros Gastos Dls">
+						<h:outputText value="#{maquinaria.otrosGastosDlls}" />
+					</p:column>
+
+					<p:column styleClass="colEstatus" headerText="Editar / Eliminar"
+						footerText="Editar / Eliminar">
+
+						<p:commandButton icon="ui-icon-pencil"
+							oncomplete="PF('dlgNuevo').show();" update=":form:idDlgNuevo">
+							<f:setPropertyActionListener value="#{maquinaria}"
+								target="#{catMaquinariaMB.clMaquinariaNuevo}" />
+						</p:commandButton>
+
+						<p:commandButton icon="ui-icon-trash"
+							action="#{catMaquinariaMB.delete}" update="tablaMaquinaria"
+							onsuccess="setTimeout ( '$(\'#form\\\\:messages\').hide()', 2500);">
+							<f:setPropertyActionListener value="#{maquinaria}"
+								target="#{catMaquinariaMB.clMaquinariaSeleccionado}" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+
+				<p:dialog id="idDlgNuevo" widgetVar="dlgNuevo" closable="true"
+					showEffect="clip" hideEffect="clip" visible="false" width="500px"
+					height="550px" header="Agregar Maquinaria">
+
+					<p:ajax event="close" listener="#{catMaquinariaMB.cancelar}"
+						update="idDlgNuevo" />
+
+					<br />
+					<br />
+
+					<p:accordionPanel multiple="true">
+						<p:tab title="GENERALES">
+							<p:panelGrid columns="3" styleClass="panelNoBorder">
+								<h:outputText value="Grupo maquinaria" />
+								<p:selectOneMenu
+									value="#{catMaquinariaMB.clMaquinariaNuevo.idGrupo}">
+									<f:selectItems var="tipoGrupo"
+										value="#{catMaquinariaMB.grupoMaquinariaList}"
+										itemLabel="#{tipoGrupo.descripcion}"
+										itemValue="#{tipoGrupo.id}" />
+								</p:selectOneMenu>
+								<p:commandButton value="+"
+									onclick="PF('dlgNuevoGrupo').show();PF('dlgNuevo').hide();" />
+
+								<h:outputText value="Codigo" />
+								<p:inputText value="#{catMaquinariaMB.clMaquinariaNuevo.codigo}" />
+								<p:outputLabel />
+
+								<h:outputText value="Descripcion" />
+								<p:inputText
+									value="#{catMaquinariaMB.clMaquinariaNuevo.descripcion}" />
+								<p:outputLabel />
+
+								<h:outputText value="Año" />
+								<p:inputText value="#{catMaquinariaMB.clMaquinariaNuevo.anio}" />
+								<p:outputLabel />
+
+								<h:outputText value="Marca" />
+								<p:selectOneMenu
+									value="#{catMaquinariaMB.clMaquinariaNuevo.idMarca}">
+									<f:selectItems var="tipoMarca"
+										value="#{catMaquinariaMB.marcasList}"
+										itemLabel="#{tipoMarca.descripcion}"
+										itemValue="#{tipoMarca.id}" />
+								</p:selectOneMenu>
+								<p:commandButton value="+"
+									onclick="PF('dlgNuevoMarca').show();PF('dlgNuevo').hide();" />
+
+								<h:outputText value="Modelo" />
+								<p:inputText value="#{catMaquinariaMB.clMaquinariaNuevo.modelo}" />
+								<p:outputLabel />
+
+								<h:outputText value="Numero de Serie" />
+								<p:inputText
+									value="#{catMaquinariaMB.clMaquinariaNuevo.numSerie}" />
+								<p:outputLabel />
+
+								<h:outputText value="Propietario" />
+								<p:selectOneMenu
+									value="#{catMaquinariaMB.clMaquinariaNuevo.idPropietario}">
+									<f:selectItems var="tipoPropietario"
+										value="#{catMaquinariaMB.propietarioList}"
+										itemLabel="#{tipoPropietario.descripcion}"
+										itemValue="#{tipoPropietario.id}" />
+								</p:selectOneMenu>
+								<p:commandButton value="+"
+									onclick="PF('dlgNuevoPropietario').show();PF('dlgNuevo').hide();" />
+
+								<h:outputText value="Numero de Transmision" />
+								<p:inputText
+									value="#{catMaquinariaMB.clMaquinariaNuevo.numTransmision}" />
+								<p:outputLabel />
+
+								<h:outputText value="Numero de Serie de Motor" />
+								<p:inputText
+									value="#{catMaquinariaMB.clMaquinariaNuevo.numSerieMotor}" />
+								<p:outputLabel />
+
+								<h:outputText value="Capacidad del Motor" />
+								<p:inputText
+									value="#{catMaquinariaMB.clMaquinariaNuevo.capacidadMotor}" />
+								<p:outputLabel />
+
+								<h:outputText value="Fecha de Compra" />
+								<p:inputMask
+									value="#{catMaquinariaMB.clMaquinariaNuevo.fechaCompra}"
+									mask="99/99/9999" style="width:100%" />
+								<p:outputLabel />
+							</p:panelGrid>
+						</p:tab>
+
+						<p:tab title="COSTOS">
+							<p:panelGrid columns="3" styleClass="panelNoBorder">
+
+								<h:outputText value="Costo Hora 1" />
+								<p:inputText
+									value="#{catMaquinariaMB.clMaquinariaNuevo.costoHora1}" />
+								<p:outputLabel />
+
+								<h:outputText value="Costo Hora 2" />
+								<p:inputText
+									value="#{catMaquinariaMB.clMaquinariaNuevo.costoHora2}" />
+								<p:outputLabel />
+
+								<h:outputText value="Costo Hora 3" />
+								<p:inputText
+									value="#{catMaquinariaMB.clMaquinariaNuevo.costoHora3}" />
+								<p:outputLabel />
+
+								<h:outputText value="Costo Hora 4" />
+								<p:inputText
+									value="#{catMaquinariaMB.clMaquinariaNuevo.costoHora4}" />
+								<p:outputLabel />
+
+								<h:outputText value="Horometro Compra" />
+								<p:inputText
+									value="#{catMaquinariaMB.clMaquinariaNuevo.horometroCompra}" />
+								<p:outputLabel />
+
+								<h:outputText value="Horometro Inicial" />
+								<p:inputText
+									value="#{catMaquinariaMB.clMaquinariaNuevo.horometroInicial}" />
+								<p:outputLabel />
+
+								<h:outputText value="Tipo Cambio" />
+								<p:selectOneMenu
+									value="#{catMaquinariaMB.clMaquinariaNuevo.idTipoCambio}">
+									<f:selectItems var="tipoCambio"
+										value="#{catMaquinariaMB.tipoCambioList}"
+										itemLabel="#{tipoCambio.tipoCambio}"
+										itemValue="#{tipoCambio.id}" />
+								</p:selectOneMenu>
+								<p:commandButton value="+"
+									onclick="PF('dlgNuevoTipoCambio').show();PF('dlgNuevo').hide();" />
+
+								<h:outputText value="Pendimiento Importacion" />
+								<p:inputText
+									value="#{catMaquinariaMB.clMaquinariaNuevo.pedimientoImportacion}" />
+								<p:outputLabel />
+							</p:panelGrid>
+						</p:tab>
+						<p:tab title="PROVEEDOR">
+							<p:panelGrid columns="3" styleClass="panelNoBorder">
+
+								<h:outputText value="Proveedor" />
+								<p:selectOneMenu
+									value="#{catMaquinariaMB.clMaquinariaNuevo.idProveedor}">
+									<f:selectItems var="tipoProveedor"
+										value="#{catMaquinariaMB.proveedorList}"
+										itemLabel="#{tipoProveedor.nombre}"
+										itemValue="#{tipoProveedor.id}" />
+								</p:selectOneMenu>
+								<p:commandButton value="+"
+									onclick="PF('dlgNuevoProveedor').show();PF('dlgNuevo').hide();" />
+
+								<h:outputText value="Observaciones" />
+								<p:inputText
+									value="#{catMaquinariaMB.clMaquinariaNuevo.observaciones}" />
+								<p:outputLabel />
+							</p:panelGrid>
+
+						</p:tab>
+						<p:tab title="PRECIOS VENTA">
+							<p:panelGrid columns="3" styleClass="panelNoBorder">
+								<h:outputText value="Fecha de Venta" />
+								<p:inputMask
+									value="#{catMaquinariaMB.clMaquinariaNuevo.fechaVenta}"
+									mask="99/99/9999" style="width:100%" />
+								<p:outputLabel />
+
+								<h:outputText value="Comprador" />
+								<p:inputText
+									value="#{catMaquinariaMB.clMaquinariaNuevo.comprador}" />
+								<p:outputLabel />
+
+								<h:outputText value="Precio de Venta" />
+								<p:inputText
+									value="#{catMaquinariaMB.clMaquinariaNuevo.precioVenta}" />
+								<p:outputLabel />
+
+								<h:outputText value="Precio de Compra Pesos" />
+								<p:inputText
+									value="#{catMaquinariaMB.clMaquinariaNuevo.precioCompraPesos}" />
+								<p:outputLabel />
+
+								<h:outputText value="Precio de Compra Dls" />
+								<p:inputText
+									value="#{catMaquinariaMB.clMaquinariaNuevo.precioCompraDlls}" />
+								<p:outputLabel />
+
+								<h:outputText value="Flete Americano Pesos" />
+								<p:inputText
+									value="#{catMaquinariaMB.clMaquinariaNuevo.fleteAmericanoPesos}" />
+								<p:outputLabel />
+
+								<h:outputText value="Flete Americano Dls" />
+								<p:inputText
+									value="#{catMaquinariaMB.clMaquinariaNuevo.fleteAmericanoDlls}" />
+								<p:outputLabel />
+
+								<h:outputText value="Costo Broker Pesos" />
+								<p:inputText
+									value="#{catMaquinariaMB.clMaquinariaNuevo.costoBrokerPesos}" />
+								<p:outputLabel />
+
+								<h:outputText value="Costo Broker Dls" />
+								<p:inputText
+									value="#{catMaquinariaMB.clMaquinariaNuevo.costoBrokerDlls}" />
+								<p:outputLabel />
+
+								<h:outputText value="Aduanales Pesos" />
+								<p:inputText
+									value="#{catMaquinariaMB.clMaquinariaNuevo.aduanalesPesos}" />
+								<p:outputLabel />
+
+								<h:outputText value="Aduanales Dls" />
+								<p:inputText
+									value="#{catMaquinariaMB.clMaquinariaNuevo.aduanalesDlls}" />
+								<p:outputLabel />
+
+								<h:outputText value="Impuestos Mexicanos Pesos" />
+								<p:inputText
+									value="#{catMaquinariaMB.clMaquinariaNuevo.impuestosMexicanosPesos}" />
+								<p:outputLabel />
+
+								<h:outputText value="Impuestos Mexicanos Dls" />
+								<p:inputText
+									value="#{catMaquinariaMB.clMaquinariaNuevo.impuestosMexicanosDlls}" />
+								<p:outputLabel />
+
+								<h:outputText value="Flete Mexicano Pesos" />
+								<p:inputText
+									value="#{catMaquinariaMB.clMaquinariaNuevo.fleteMexicanoPesos}" />
+								<p:outputLabel />
+
+								<h:outputText value="Flete Mexicano Dls" />
+								<p:inputText
+									value="#{catMaquinariaMB.clMaquinariaNuevo.fleteMexicanoDlls}" />
+								<p:outputLabel />
+
+								<h:outputText value="Seguro en Pesos" />
+								<p:inputText
+									value="#{catMaquinariaMB.clMaquinariaNuevo.seguroPesos}" />
+								<p:outputLabel />
+
+								<h:outputText value="Seguro en Dls" />
+								<p:inputText
+									value="#{catMaquinariaMB.clMaquinariaNuevo.seguroDlls}" />
+								<p:outputLabel />
+
+								<h:outputText value="Otros Gastos en Pesos" />
+								<p:inputText
+									value="#{catMaquinariaMB.clMaquinariaNuevo.otrosGastosPesos}" />
+								<p:outputLabel />
+
+								<h:outputText value="Otros Gastos en Dls" />
+								<p:inputText
+									value="#{catMaquinariaMB.clMaquinariaNuevo.otrosGastosDlls}" />
+								<p:outputLabel />
+							</p:panelGrid>
+						</p:tab>
+						<p:tab title="RANCHO">
+							<p:panelGrid columns="3" styleClass="panelNoBorder">
+								<h:outputText value="Rancho" />
+								<p:selectOneMenu
+									value="#{catMaquinariaMB.clMaquinariaNuevo.idRancho}">
+									<f:selectItems var="tipoRancho"
+										value="#{catMaquinariaMB.ranchosList}"
+										itemLabel="#{tipoRancho.descripcion}"
+										itemValue="#{tipoRancho.id}" />
+								</p:selectOneMenu>
+								<p:commandButton value="+"
+									onclick="PF('dlgNuevoRancho').show();PF('dlgNuevo').hide();" />
+
+								<h:outputText value="Foto" />
+
+								<p:fileUpload
+									fileUploadListener="#{catMaquinariaMB.handleFileUpload}"
+									mode="simple" sizeLimit="100000"
+									allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+							</p:panelGrid>
+						</p:tab>
+					</p:accordionPanel>
+					<br />
+					<br />
+					<p:panelGrid columns="2" styleClass="panelNoBorder">
+
+						<p:commandButton value="Agregar"
+							actionListener="#{catMaquinariaMB.add}"
+							oncomplete="PF('dlgNuevo').hide();"
+							onsuccess="setTimeout ( '$(\'#form\\\\:messages\').hide()', 2500);"
+							update="idDlgNuevo tablaMaquinaria" />
+
+						<p:commandButton value="Cancelar"
+							actionListener="#{catMaquinariaMB.cancelar}"
+							oncomplete="PF('dlgNuevo').hide();" update="idDlgNuevo" />
+
+					</p:panelGrid>
+				</p:dialog>
+
+				<p:dialog id="idDlgNuevoGrupo" widgetVar="dlgNuevoGrupo"
+					closable="true" showEffect="clip" hideEffect="clip" visible="false"
+					width="500px" height="550px" header="Agregar GRUPO DE MAQUINARIA">
+
+					<p:ajax event="close" listener="#{catMaquinariaMB.cancelar}"
+						update="idDlgNuevoGrupo" />
+
+
+					<p:panelGrid columns="2">
+
+
+						<h:outputText value="Descripcion" />
+
+						<p:inputText
+							value="#{catMaquinariaMB.clGrupoMaquinariaNuevo.descripcion}"
+							style="width:100%" />
+
+						<p:commandButton value="Agregar"
+							actionListener="#{catMaquinariaMB.addGrupoMaq}"
+							oncomplete="PF('dlgNuevoGrupo').hide();PF('dlgNuevo').show();"
+							onsuccess="setTimeout ( '$(\'#form\\\\:messages\').hide()', 2500);"
+							update="idDlgNuevo idDlgNuevoGrupo" />
+
+						<p:commandButton value="Cancelar"
+							actionListener="#{catMaquinariaMB.cancelar}"
+							oncomplete="PF('dlgNuevo').hide();"
+							update="idDlgNuevo idDlgNuevoGrupo" />
+
+					</p:panelGrid>
+				</p:dialog>
+
+				<p:dialog id="idDlgNuevoMarca" widgetVar="dlgNuevoMarca"
+					closable="true" showEffect="clip" hideEffect="clip" visible="false"
+					width="500px" height="550px" header="Agregar Marca">
+
+					<p:ajax event="close" listener="#{catMaquinariaMB.cancelar}"
+						update="idDlgNuevoMarca" />
+
+					<p:panelGrid columns="2">
+						<h:outputText value="Descripcion" />
+
+						<p:inputText value="#{catMaquinariaMB.clMarcasNuevo.descripcion}"
+							style="width:100%" />
+
+						<p:commandButton value="Agregar"
+							actionListener="#{catMaquinariaMB.addMarcas}"
+							oncomplete="PF('dlgNuevoMarca').hide();PF('dlgNuevo').show();"
+							onsuccess="setTimeout ( '$(\'#form\\\\:messages\').hide()', 2500);"
+							update="idDlgNuevo idDlgNuevoMarca" />
+
+						<p:commandButton value="Cancelar"
+							actionListener="#{catMaquinariaMB.cancelar}"
+							oncomplete="PF('dlgNuevoMarca').hide();PF('dlgNuevo').show();"
+							update="idDlgNuevo idDlgNuevoMarca" />
+
+					</p:panelGrid>
+				</p:dialog>
+
+				<p:dialog id="idDlgNuevoPropietario" widgetVar="dlgNuevoPropietario"
+					closable="true" showEffect="clip" hideEffect="clip" visible="false"
+					width="500px" height="550px" header="Agregar propietario">
+
+					<p:ajax event="close" listener="#{catMaquinariaMB.cancelar}"
+						update="idDlgNuevo" />
+
+
+					<p:panelGrid columns="2">
+
+
+						<h:outputText value="Descripcion" />
+
+						<p:inputText
+							value="#{catMaquinariaMB.clPropietarioNuevo.descripcion}"
+							style="width:100%" />
+
+						<p:commandButton value="Agregar"
+							actionListener="#{catMaquinariaMB.addPropietario}"
+							oncomplete="PF('dlgNuevo').hide();PF('dlgNuevoPropietario').show();"
+							onsuccess="setTimeout ( '$(\'#form\\\\:messages\').hide()', 2500);"
+							update="idDlgNuevo idDlgNuevoPropietario" />
+
+						<p:commandButton value="Cancelar"
+							actionListener="#{catPropietariosMB.cancelar}"
+							oncomplete="PF('dlgNuevo').hide();PF('dlgNuevoPropietario').show();"
+							update="idDlgNuevo idDlgNuevoPropietario" />
+
+					</p:panelGrid>
+				</p:dialog>
+
+				<p:dialog id="idDlgNuevoTipoCambio" widgetVar="dlgNuevoTipoCambio"
+					closable="true" showEffect="clip" hideEffect="clip" visible="false"
+					width="500px" height="550px" header="Agregar tipoCambio">
+
+					<p:ajax event="close" listener="#{catMaquinariaMB.cancelar}"
+						update="idDlgNuevoTipoCambio" />
+
+
+					<p:panelGrid columns="2">
+
+
+						<h:outputText value="Tipo de Cambio" />
+
+						<p:inputText
+							value="#{catMaquinariaMB.clTipoCambioNuevo.tipoCambio}"
+							style="width:100%" />
+
+						<h:outputText value="Fecha" />
+
+						<p:inputMask value="#{catMaquinariaMB.clTipoCambioNuevo.fecha}"
+							mask="99/99/9999" style="width:100%" />
+
+						<p:commandButton value="Agregar"
+							actionListener="#{catMaquinariaMB.addTipoCambio}"
+							oncomplete="PF('dlgNuevoTipoCambio').hide();PF('dlgNuevo').show();"
+							onsuccess="setTimeout ( '$(\'#form\\\\:messages\').hide()', 2500);"
+							update="idDlgNuevoTipoCambio idDlgNuevo" />
+
+						<p:commandButton value="Cancelar"
+							actionListener="#{catTipoCambioMB.cancelar}"
+							oncomplete="PF('dlgNuevoTipoCambio').hide();PF('dlgNuevo').show();"
+							update="idDlgNuevoTipoCambio idDlgNuevo" />
+
+					</p:panelGrid>
+				</p:dialog>
+
+				<p:dialog id="idDlgNuevoRancho" widgetVar="dlgNuevoRancho"
+					closable="true" showEffect="clip" hideEffect="clip" width="500px"
+					height="550px" header="Agregar Rancho">
+
+					<p:ajax event="close" listener="#{catMaquinariaMB.cancelar}"
+						update="idDlgNuevoRancho" />
+
+					<br />
+					<br />
+					<p:panelGrid columns="3" styleClass="panelNoBorder">
+
+
+						<h:outputText value="Descripcion" />
+
+						<p:inputText value="#{catMaquinariaMB.clRanchosNuevo.descripcion}"
+							style="width:100%" />
+
+						<p:outputLabel />
+
+
+						<h:outputText value="Zona" />
+
+						<p:selectOneMenu value="#{catMaquinariaMB.clRanchosNuevo.idZona}">
+							<f:selectItems var="tipoZona"
+								value="#{catMaquinariaMB.zonasList}"
+								itemLabel="#{tipoZona.descripcion}" itemValue="#{tipoZona.id}" />
+						</p:selectOneMenu>
+						<p:commandButton value="+"
+							onclick="PF('dlgNuevaZona').show();PF('dlgNuevoRancho').hide();" />
+
+					</p:panelGrid>
+
+					<br />
+					<br />
+					<p:panelGrid columns="2" styleClass="panelNoBorder">
+
+						<p:commandButton value="Agregar"
+							actionListener="#{catMaquinariaMB.addRancho}"
+							oncomplete="PF('dlgNuevoRancho').hide();PF('dlgNuevo').show();"
+							onsuccess="setTimeout ( '$(\'#form\\\\:messages\').hide()', 2500);"
+							update="idDlgNuevo idDlgNuevoRancho" />
+
+						<p:commandButton value="Cancelar"
+							actionListener="#{catMaquinariaMB.cancelar}"
+							oncomplete="PF('dlgNuevoRancho').hide();PF('dlgNuevo').show();"
+							update="idDlgNuevo idDlgNuevoRancho" />
+
+					</p:panelGrid>
+				</p:dialog>
+
+				<p:dialog id="idDlgNuevaZona" widgetVar="dlgNuevaZona"
+					closable="true" showEffect="clip" hideEffect="clip" visible="false"
+					width="500px" height="550px" header="Agregar Zona">
+
+					<p:panelGrid columns="2">
+
+
+						<h:outputText value="Descripcion" />
+
+						<p:inputText value="#{catMaquinariaMB.clZonasNuevo.descripcion}"
+							style="width:100%" />
+
+						<p:commandButton value="Agregar"
+							actionListener="#{catMaquinariaMB.addZona}"
+							oncomplete="PF('dlgNuevoRancho').show();PF('dlgNuevaZona').hide();"
+							onsuccess="setTimeout ( '$(\'#form\\\\:messages\').hide()', 2500);"
+							update="idDlgNuevoRancho idDlgNuevaZona" />
+
+						<p:commandButton value="Cancelar"
+							actionListener="#{catMaquinariaMB.cancelar}"
+							oncomplete="PF('dlgNuevoRancho').show();PF('dlgNuevaZona').hide();"
+							update="idDlgNuevoRancho idDlgNuevaZona" />
+
+					</p:panelGrid>
+				</p:dialog>
+
+
+
+				<p:dialog id="idDlgNuevoProveedor" widgetVar="dlgNuevoProveedor"
+					closable="true" showEffect="clip" hideEffect="clip" visible="false"
+					width="500px" height="550px" header="Agregar Proveedor">
+
+					<p:ajax event="close" listener="#{catMaquinariaMB.cancelar}"
+						update="idDlgNuevo" />
+
+
+
+					<p:panelGrid columns="3" styleClass="panelNoBorder">
+
+
+						<h:outputText value="Nombre" />
+
+						<p:inputText value="#{catMaquinariaMB.clProveedorNuevo.nombre}"
+							style="width:100%" />
+
+						<p:outputLabel />
+						<h:outputText value="Nombre Completo" />
+
+						<p:inputText
+							value="#{catMaquinariaMB.clProveedorNuevo.nombreCompleto}"
+							style="width:100%" />
+						<p:outputLabel />
+						<h:outputText value="Direccion" />
+
+						<p:inputText value="#{catMaquinariaMB.clProveedorNuevo.direccion}"
+							style="width:100%" />
+						<p:outputLabel />
+						<h:outputText value="Tipo Proveedor" />
+
+						<p:selectOneMenu
+							value="#{catMaquinariaMB.clProveedorNuevo.idTipo}"
+							style="width:100%">
+							<f:selectItems var="tipoElementoNuevo"
+								value="#{catMaquinariaMB.listaTipoProveedor}"
+								itemLabel="#{tipoElementoNuevo.nombre}"
+								itemValue="#{tipoElementoNuevo.id}" />
+						</p:selectOneMenu>
+
+						<p:commandButton value="+"
+							onclick="PF('dlgNuevaTipoProveedor').show();PF('dlgNuevoProveedor').hide();" />
+
+
+						<h:outputText value="Estatus" />
+
+						<p:selectOneMenu
+							value="#{catMaquinariaMB.clProveedorNuevo.idEstatus}"
+							style="width:100%">
+							<f:selectItems var="estatusElementoNuevo"
+								value="#{catMaquinariaMB.listaTipoEstatus}"
+								itemLabel="#{estatusElementoNuevo.nombre}"
+								itemValue="#{estatusElementoNuevo.id}" />
+						</p:selectOneMenu>
+
+						<p:commandButton value="+"
+							onclick="PF('dlgNuevaEstatus').show();PF('dlgNuevoProveedor').hide();" />
+
+						<h:outputText value="Colonia" />
+
+						<p:inputText value="#{catMaquinariaMB.clProveedorNuevo.colonia}"
+							style="width:100%" />
+						<p:outputLabel />
+						<h:outputText value="Ciudad" />
+
+						<p:inputText value="#{catMaquinariaMB.clProveedorNuevo.ciudad}"
+							style="width:100%" />
+						<p:outputLabel />
+						<h:outputText value="Estado" />
+
+						<p:inputText value="#{catMaquinariaMB.clProveedorNuevo.estado}"
+							style="width:100%" />
+						<p:outputLabel />
+						<h:outputText value="Codigo Postal" />
+
+						<p:inputText
+							value="#{catMaquinariaMB.clProveedorNuevo.codigoPostal}"
+							style="width:100%" />
+						<p:outputLabel />
+
+						<h:outputText value="Telefono" />
+
+						<p:inputText value="#{catMaquinariaMB.clProveedorNuevo.telefono}"
+							style="width:100%" />
+						<p:outputLabel />
+						<h:outputText value="Telefono 1" />
+
+						<p:inputText value="#{catMaquinariaMB.clProveedorNuevo.telefono1}"
+							style="width:100%" />
+						<p:outputLabel />
+						<h:outputText value="Telefono Celular" />
+
+						<p:inputText value="#{catMaquinariaMB.clProveedorNuevo.celular}"
+							style="width:100%" />
+						<p:outputLabel />
+						<h:outputText value="RFC" />
+
+						<p:inputText value="#{catMaquinariaMB.clProveedorNuevo.rfc}"
+							style="width:100%" />
+						<p:outputLabel />
+						<h:outputText value="CURP" />
+
+						<p:inputText value="#{catMaquinariaMB.clProveedorNuevo.curp}"
+							style="width:100%" />
+						<p:outputLabel />
+						<h:outputText value="E-MAIL" />
+
+						<p:inputText value="#{catMaquinariaMB.clProveedorNuevo.email}"
+							style="width:100%" />
+						<p:outputLabel />
+						<h:outputText value="Fecha de Alta" />
+
+						<p:inputText value="#{catMaquinariaMB.clProveedorNuevo.fechaAlta}"
+							style="width:100%" />
+						<p:outputLabel />
+
+					</p:panelGrid>
+
+					<br />
+					<br />
+
+					<p:panelGrid columns="2" styleClass="panelNoBorder">
+						<p:commandButton value="Agregar"
+							actionListener="#{catMaquinariaMB.addProveedor}"
+							oncomplete="PF('dlgNuevoProveedor').hide();PF('dlgNuevo').show();"
+							onsuccess="setTimeout ( '$(\'#form\\\\:messages\').hide()', 2500);"
+							update="idDlgNuevo idDlgNuevoProveedor" />
+
+						<p:commandButton value="Cancelar"
+							actionListener="#{catMaquinariaMB.cancelar}"
+							oncomplete="PF('dlgNuevoProveedor').hide();PF('dlgNuevo').show();"
+							update="idDlgNuevo" />
+
+					</p:panelGrid>
+
+				</p:dialog>
+
+				<p:dialog id="idDlgNuevaTipoProveedor"
+					widgetVar="dlgNuevaTipoProveedor" closable="true" showEffect="clip"
+					hideEffect="clip" visible="false" width="500px" height="550px"
+					header="Agregar / Actualizar Tipo de Proveedor">
+
+
+					<p:panelGrid columns="2" styleClass="panelNoBorder">
+
+
+						<h:outputText value="Descripcion" />
+
+						<p:inputText
+							value="#{catMaquinariaMB.catalogoNuevoTipoProveedor.nombre}"
+							style="width:100%" />
+
+						<p:commandButton value="Agregar"
+							actionListener="#{catMaquinariaMB.addCatalogTipoProveedor}"
+							oncomplete="PF('dlgNuevoProveedor').show();PF('dlgNuevaTipoProveedor').hide();"
+							onsuccess="setTimeout ( '$(\'#form\\\\:messages\').hide()', 2500);"
+							update="idDlgNuevoProveedor idDlgNuevaTipoProveedor" />
+
+						<p:commandButton value="Cancelar"
+							actionListener="#{catMaquinariaMB.cancelar}"
+							oncomplete="PF('dlgNuevaTipoProveedor').hide();PF('dlgNuevoProveedor').show();"
+							update="idDlgNuevo idDlgNuevaTipoProveedor" />
+
+					</p:panelGrid>
+				</p:dialog>
+
+				<p:dialog id="idDlgNuevaEstatus" widgetVar="dlgNuevaEstatus"
+					closable="true" showEffect="clip" hideEffect="clip" visible="false"
+					width="500px" height="550px" header="Agregar / Actualizar Estatus">
+
+
+					<p:panelGrid columns="2" styleClass="panelNoBorder">
+
+
+						<h:outputText value="Descripcion" />
+
+						<p:inputText
+							value="#{catMaquinariaMB.catalogoNuevoEstatus.nombre}"
+							style="width:100%" />
+
+						<p:commandButton value="Agregar"
+							actionListener="#{catMaquinariaMB.addCatalogEstatus}"
+							oncomplete="PF('dlgNuevoProveedor').show();PF('dlgNuevaEstatus').hide();"
+							onsuccess="setTimeout ( '$(\'#form\\\\:messages\').hide()', 2500);"
+							update="idDlgNuevo idDlgNuevaEstatus" />
+
+						<p:commandButton value="Cancelar"
+							actionListener="#{catMaquinariaMB.cancelar}"
+							oncomplete="PF('dlgNuevaEstatus').hide();PF('dlgNuevoProveedor').show();"
+							update="idDlgNuevo idDlgNuevaEstatus" />
+
+					</p:panelGrid>
+				</p:dialog>
+
+
+
+			</h:form>
+		</h:body>
+	</ui:define>
+</ui:composition>

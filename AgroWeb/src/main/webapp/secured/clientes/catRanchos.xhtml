@@ -1,0 +1,161 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/templatePage.xhtml">
+
+
+	<ui:define name="content">
+
+		<h:head>
+
+			<style type="text/css">
+.ui-datatable table {
+	border-collapse: collapse;
+	width: 100%;
+	table-layout: fixed;
+}
+
+.colEstatus {
+	font-size: 70%;
+	width: 30px !important;
+	text-align: center;
+}
+
+.colButtons {
+	font-size: 70%;
+	width: 3px !important;
+	text-align: center;
+}
+
+.panelNoBorder,.panelNoBorder tr,.panelNoBorder td {
+	border: hidden;
+	border-color: white;
+}
+</style>
+
+		</h:head>
+		<h:body>
+			<center>
+				<span class="tituloPantalla"> Catalogo de Ranchos </span>
+			</center>
+			<h:form id="form">
+				<p:messages id="messages" showDetail="true" autoUpdate="true"
+					closable="true" />
+				<br />
+				<br />
+				<br />
+				<br />
+
+				<p:commandButton value="Agregar" onclick="PF('dlgNuevo').show();" />
+				<br />
+				<br />
+
+				<p:dataTable var="rancho" id="tablaRanchos"
+					value="#{catRanchosMB.listaRanchos}" scrollWidth="1024"
+					styleClass="myTable">
+
+					<f:facet name="header">Ranchos</f:facet>
+
+					<p:column styleClass="colEstatus" headerText="Descripcion"
+						footerText="Descripcion">
+						<h:outputText value="#{rancho.descripcion}" />
+					</p:column>
+					<p:column styleClass="colEstatus" headerText="Zona"
+						footerText="Zona">
+						<h:outputText value="#{rancho.catalogoZonas.descripcion}" />
+					</p:column>
+					<p:column styleClass="colButtons" headerText="Editar / Eliminar"
+						footerText="Editar / Eliminar">
+						<p:commandButton icon="ui-icon-pencil"
+							oncomplete="PF('dlgNuevo').show();" update=":form:idDlgNuevo">
+							<f:setPropertyActionListener value="#{rancho}"
+								target="#{catRanchosMB.clRanchosNuevo}" />
+						</p:commandButton>
+						<p:commandButton icon="ui-icon-trash"
+							action="#{catRanchosMB.delete}" update="tablaRanchos"
+							onsuccess="setTimeout ( '$(\'#form\\\\:messages\').hide()', 2500);">
+							<f:setPropertyActionListener value="#{rancho}"
+								target="#{catRanchosMB.clRanchosSeleccionado}" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+
+				<p:dialog id="idDlgNuevo" widgetVar="dlgNuevo" closable="true"
+					showEffect="clip" hideEffect="clip" width="500px" height="550px"
+					header="Agregar Rancho">
+
+					<p:ajax event="close" listener="#{catRanchosMB.cancelar}"
+						update="idDlgNuevo" />
+
+					<br />
+					<br />
+					<p:panelGrid columns="3" styleClass="panelNoBorder">
+
+
+						<h:outputText value="Descripcion" />
+
+						<p:inputText value="#{catRanchosMB.clRanchosNuevo.descripcion}"
+							style="width:100%" />
+
+						<p:outputLabel />
+
+
+						<h:outputText value="Zona" />
+
+						<p:selectOneMenu value="#{catRanchosMB.clRanchosNuevo.idZona}">
+							<f:selectItems var="tipoZona" value="#{catRanchosMB.listaZonas}"
+								itemLabel="#{tipoZona.descripcion}" itemValue="#{tipoZona.id}" />
+						</p:selectOneMenu>
+						<p:commandButton value="+"
+							onclick="PF('dlgNuevaZona').show();PF('dlgNuevo').hide();" />
+
+					</p:panelGrid>
+
+					<br />
+					<br />
+					<p:panelGrid columns="2" styleClass="panelNoBorder">
+
+						<p:commandButton value="Agregar"
+							actionListener="#{catRanchosMB.add}"
+							oncomplete="PF('dlgNuevo').hide();"
+							onsuccess="setTimeout ( '$(\'#form\\\\:messages\').hide()', 2500);"
+							update="tablaRanchos idDlgNuevo" />
+
+						<p:commandButton value="Cancelar"
+							actionListener="#{catRanchosMB.cancelar}"
+							oncomplete="PF('dlgNuevo').hide();" update="idDlgNuevo" />
+
+					</p:panelGrid>
+				</p:dialog>
+
+				<p:dialog id="idDlgNuevaZona" widgetVar="dlgNuevaZona"
+					closable="true" showEffect="clip" hideEffect="clip" visible="false"
+					width="500px" height="550px" header="Agregar Zona">
+
+					<p:panelGrid columns="2">
+
+
+						<h:outputText value="Descripcion" />
+
+						<p:inputText value="#{catRanchosMB.clZonasNuevo.descripcion}"
+							style="width:100%" />
+
+						<p:commandButton value="Agregar"
+							actionListener="#{catRanchosMB.addZona}"
+							oncomplete="PF('dlgNuevo').show();PF('dlgNuevaZona').hide();"
+							onsuccess="setTimeout ( '$(\'#form\\\\:messages\').hide()', 2500);"
+							update="idDlgNuevo" />
+
+						<p:commandButton value="Cancelar"
+							actionListener="#{catRanchosMB.cancelar}"
+							oncomplete="PF('dlgNuevo').hide();" update="idDlgNuevo" />
+
+					</p:panelGrid>
+				</p:dialog>
+
+			</h:form>
+		</h:body>
+	</ui:define>
+</ui:composition>
